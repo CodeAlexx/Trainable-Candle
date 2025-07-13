@@ -1,0 +1,43 @@
+[package]
+name = "candle-lora-gpu"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "GPU-accelerated LoRA training for diffusion models using Candle"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yourusername/candle-lora-gpu"
+keywords = ["deep-learning", "lora", "cuda", "diffusion", "training"]
+categories = ["science", "algorithms"]
+
+[dependencies]
+candle-core = { version = "0.6", features = ["cuda"] }
+candle-nn = "0.6"
+cudarc = { version = "0.11", features = ["std"] }
+safetensors = "0.4"
+anyhow = "1.0"
+clap = { version = "4.0", features = ["derive"] }
+thiserror = "1.0"
+
+[build-dependencies]
+cc = "1.0"
+bindgen = "0.68"
+
+[dev-dependencies]
+criterion = "0.5"
+
+[features]
+default = ["cuda"]
+cuda = ["candle-core/cuda"]
+f16 = []
+
+[[bin]]
+name = "train-lora"
+path = "src/bin/train.rs"
+
+[[example]]
+name = "train_production"
+path = "examples/train_lora_production.rs"
+
+[lib]
+name = "candle_lora_gpu"
+path = "src/lib.rs"
