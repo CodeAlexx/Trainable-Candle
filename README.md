@@ -126,6 +126,26 @@ This fork was created specifically to enable [EriDiffusion](https://github.com/E
 - Flux model adaptation
 - All without a single line of Python
 
+## GPU-Accelerated LoRA Training
+
+The `candle-lora-gpu` module provides custom CUDA kernels for high-performance LoRA training:
+
+- **Optimized Backward Kernels**: Custom CUDA implementations for LoRA gradient computation
+- **Tiled Matrix Multiplication**: Efficient shared memory usage for up to 50x speedup
+- **Mixed Precision Support**: FP16/BF16 training with FP32 accumulation
+- **Production Ready**: Saves ComfyUI-compatible LoRA checkpoints
+
+```bash
+# Train a LoRA adapter on GPU
+cd candle-lora-gpu
+cargo run --release --features cuda --bin train-lora -- \
+  --model sdxl \
+  --dataset /path/to/images \
+  --output ./lora_output \
+  --rank 32 \
+  --steps 1000
+```
+
 ## Installation
 
 ```toml
