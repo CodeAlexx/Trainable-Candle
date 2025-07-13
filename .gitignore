@@ -1,0 +1,76 @@
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Python (utility scripts only, not part of the framework)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Documentation build
+/target/doc
+/target/debug
+/target/release
+
+# Backup files
+*.bak
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Test data
+/test-data/
+/test-output/
+
+# Model weights (too large for git)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# Datasets
+/datasets/
+/data/
+
+# Output directories
+/output/
+/outputs/
+/checkpoints/
+/models/
+
+# Environment specific
+.env
+.env.local
+
+# CLAUDE.md or any AI assistant markers
+CLAUDE.md
+claude.md
+.claude*
+*claude*
