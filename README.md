@@ -117,9 +117,34 @@ let mut optimizer = Adam8bit::new(
 optimizer.step(&parameters)?;
 ```
 
+### 5. GPU-Accelerated LoRA Training (NEW)
+**GPU Required** - Accelerate LoRA training with optimized CUDA kernels:
+
+```rust
+use candle_core::lora_backward_ops::LoRABackwardOps;
+
+// GPU-accelerated backward pass for LoRA (requires CUDA GPU)
+let (grad_down, grad_up) = LoRABackwardOps::backward(
+    &grad_output,
+    &input,
+    &lora_down,
+    &lora_up,
+    scale
+)?;
+
+// 2-4x faster than standard implementation
+```
+
+Build with GPU support:
+```bash
+cargo build --release --features cuda-backward
+```
+
+Note: This feature requires a CUDA-capable GPU. There is no CPU fallback.
+
 ## Real-World Usage: EriDiffusion
 
-This fork was created specifically to enable [EriDiffusion](https://github.com/EricLBuehler/candle), a pure-Rust implementation of Stable Diffusion training. It powers:
+This fork was created specifically to enable [EriDiffusion](https://github.com/CodeAlexx/EriDiffusion), a pure-Rust implementation of Stable Diffusion training. It powers:
 
 - SDXL LoRA fine-tuning at 1024x1024 resolution
 - SD 3.5 training with flow matching

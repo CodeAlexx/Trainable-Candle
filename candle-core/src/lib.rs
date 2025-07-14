@@ -57,6 +57,9 @@ pub mod cpu;
 pub mod cpu_backend;
 #[cfg(feature = "cuda")]
 pub mod cuda_backend;
+#[cfg(feature = "cuda")]
+pub mod cuda_lora_backward;
+pub mod lora_backward_ops;
 mod custom_op;
 mod device;
 pub mod display;
